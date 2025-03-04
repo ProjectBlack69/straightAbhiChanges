@@ -1,0 +1,578 @@
+.profile-main {
+  overflow-y: hidden;
+  margin-top: 60px;
+}
+
+.employee-profile-main {
+  margin-top: 60px;
+}
+
+.profile-container {
+  width: 100%;
+  min-height: 105vh;
+  background: #f0f0f0;
+}
+
+.emp-box {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container > .emp-box:first-child {
+  width: 30%;
+  max-height: 100%;
+  position: relative;
+  margin: 20px;
+  top: 30px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.profile-container > .emp-box:nth-child(2) {
+  position: absolute;
+  right: 20px;
+  top: 80px;
+  margin: 20px 20px 0;
+  width: 65%;
+  height: 44.8%;
+}
+
+.employee-profile-main ul {
+  list-style: none;
+}
+
+.employee-profile-main p {
+  display: inline-block;
+  padding-left: 10px;
+}
+
+.icons-div {
+  width: 110%;
+  border-bottom: 1px solid lightgray;
+}
+
+.profile-container > .emp-box:nth-child(3) {
+  position: absolute;
+  right: 20px;
+  bottom: 30px;
+  margin: 0 20px 10px;
+  width: 65%;
+  height: 40%;
+}
+
+.profile-container > .emp-box:nth-child(4) {
+  position: absolute;
+  left: 14px;
+  bottom: 20px;
+  margin: 20px;
+  width: 29.5%;
+  height: 40%;
+  padding: 1.2rem;
+}
+
+.profile-container > .emp-box:nth-child(4) i {
+  font-size: 23px;
+  margin-right: 10px;
+  padding: 15px;
+}
+
+.profile-container > .emp-box:nth-child(4) p {
+  font-size: 19px;
+  margin-left: 10px;
+  position: relative;
+  bottom: 3px;
+}
+
+/* First Box Contents */
+.employee-profile {
+  height: 160px;
+  width: 160px;
+  border-radius: 50%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.employeeName {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.emp-box .employeeJobTitle,
+.emp-box .employeeId,
+.emp-box .department {
+  padding: 5px;
+  color: gray;
+  font-size: 20px;
+}
+
+/* Personal Data Container */
+.personal-data {
+  width: 100%;
+  height: 100px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+}
+
+/* Section Title */
+.personal-data h3 {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  padding-bottom: 8px;
+}
+
+/* Employee Details Card */
+.employee-details-card {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Individual Detail Items */
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #3498db;
+  transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.detail-item:hover {
+  background: #e9f5ff;
+}
+
+/* Label Styling */
+.detail-label {
+  font-weight: 600;
+  color: #34495e;
+  font-size: 1rem;
+}
+
+/* Value Styling */
+.detail-item span {
+  color: #555;
+  font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .personal-data {
+      width: 90%;
+      padding: 15px;
+  }
+
+  .detail-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+  }
+
+  .personal-data h3 {
+      font-size: 1.5rem;
+  }
+}
+
+
+/* Additional Data Container */
+.additional-data {
+  width: 100%;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+}
+
+/* Section Title */
+.additional-data h3 {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 8px;
+}
+
+/* Employee Additional Details */
+.employee-additional-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Detail Item */
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #3498db;
+  transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.detail-item:hover {
+  background: #e9f5ff;
+}
+
+/* Label Styling */
+.detail-label {
+  font-weight: 600;
+  color: #34495e;
+  font-size: 1rem;
+}
+
+/* Value Styling */
+.detail-item span {
+  color: #555;
+  font-size: 1rem;
+}
+
+/* LinkedIn Styling */
+.detail-item a {
+  color: #0077b5;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.detail-item a:hover {
+  color: #005582;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .additional-data {
+      width: 90%;
+      padding: 15px;
+  }
+
+  .detail-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+  }
+
+  .additional-data h3 {
+      font-size: 1.5rem;
+  }
+}
+
+.employee-profile img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  margin-right: 1.5rem;
+  border: 2px solid lightgray;
+  cursor: pointer;
+}
+
+.emp-box .employeeJobTitle,
+.emp-box .employeeId,
+.emp-box .department {
+  padding: 5px;
+  color: gray;
+  font-size: 20px;
+}
+
+.enquiry-box {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 12px;
+  width: 470px;
+  height: 400px; /* Fixed height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+}
+
+.enquiry-box h3 {
+  font-size: 1.4rem; /* Adjusted size */
+  color: #2c3e50;
+  margin-bottom: 5px;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 5px;
+}
+
+.enquiry-item {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  background: #f8f9fa;
+  border-radius: 8px;
+  font-size: 0.9rem; /* Adjusted text size */
+  color: #34495e;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.enquiry-item:hover {
+  background: #e9f5ff;
+}
+
+.enquiry-item i {
+  font-size: 8px; /* Adjusted icon size */
+  color: #3498db;
+}
+
+.enquiry-item p {
+  margin: 0;
+  padding: 0;
+  font-size: 0.7rem; /* Ensure it fits */
+}
+
+.enquiry-item a {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #0077b5;
+  transition: color 0.3s ease;
+}
+
+.enquiry-item a:hover {
+  color: #005582;
+  text-decoration: underline;
+}
+
+
+/* General Modal Styles */
+.employee-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 800px;
+  max-width: 600px;
+  background: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  z-index: 1000;
+  padding: 1.5rem;
+  overflow: auto;
+  scrollbar-width: none;
+}
+
+#passwordChangeModal {
+  height: auto;
+}
+
+.employee-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* Header Styles */
+.employee-modal-header-edit h2 {
+  color: #0077b6;
+  font-size: 1.7rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.employee-modal-header-password h2 {
+  color: #e63946;
+  font-size: 1.7rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Form Group Styles */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.form-group input:focus {
+  border-color: #0077b6;
+  outline: none;
+}
+
+/* Profile buttons */
+#edit_details {
+  background-color: white;
+  color: blue;
+  border: 3px solid blue;
+  height: 40px;
+  width: 125px;
+  border-radius: 5px;
+  margin: 20px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  position: relative;
+  right: 100px;
+  top: 10px;
+  cursor: pointer;
+}
+
+#edit_details:hover {
+  background-color: blue;
+  color: white;
+}
+
+#edit_password {
+  margin-right: 40px;
+  margin-top: -13px;
+  background-color: white;
+  color: blue;
+  border: 3px solid blue;
+  height: 41px;
+  width: 185px;
+  border-radius: 5px;
+  position: relative;
+  left: 100px;
+  top: -38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#edit_password:hover {
+  background-color: blue;
+  color: white;
+}
+
+/* Modal Footer Buttons */
+.employee-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+}
+
+.employee-modal-footer button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Optionally style the disabled date of birth field */
+#employeeEditDob:disabled {
+  background-color: #f5f5f5;
+  color: #888;
+  cursor: not-allowed;
+}
+
+.employee-button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.employee-modal-footer .save-btn {
+  background-color: #0077b6;
+  color: white;
+}
+
+.employee-modal-footer .save-btn:hover {
+  background-color: #005f8d;
+}
+
+.employee-modal-footer .cancel-btn {
+  background-color: #ff2626;
+  color: #fff;
+}
+
+.employee-modal-footer .cancel-btn:hover {
+  background-color: #ff4e4e;
+}
+
+/* modal styling */
+.modalBoxOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+}
+
+.modalBox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: auto;
+  width: auto;
+  background-color: #fff;
+  padding: 15px 30px;
+  border-radius: 15px;
+  z-index: 1002;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  visibility: hidden;
+}
+
+.modalBox h2 {
+  font-size: 23px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.modalBox p {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 25px;
+}
+
+#modalOk {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  width: auto;
+  padding-left: 23px;
+  padding-right: 23px;
+}

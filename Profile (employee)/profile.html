@@ -1,0 +1,380 @@
+{% extends 'employee/dashboard.html' %} 
+
+{% load static %} 
+
+{% block content %}
+<style>
+  .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      background: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .modal-content {
+      font-size: 18px;
+      font-weight: bold;
+      color: #222;
+      padding: 10px;
+  }
+
+  .modal .modal-header {
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+  }
+
+  .modal .modal-body {
+      font-size: 16px;
+      color: #555;
+      padding: 10px 0;
+  }
+
+  .modal .modal-footer {
+      margin-top: 15px;
+  }
+
+  .modal .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      font-size: 16px;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+  }
+
+  .modal .btn-close {
+      background: #f44336;
+  }
+
+  .modal .btn-close:hover {
+      background: #d32f2f;
+  }
+
+  .modal .btn-success {
+      background: #4CAF50;
+  }
+
+  .modal .btn-success:hover {
+      background: #388E3C;
+  }
+
+  /* Fade-in animation */
+  @keyframes fadeIn {
+      from {
+          opacity: 0;
+          transform: translate(-50%, -55%);
+      }
+      to {
+          opacity: 1;
+          transform: translate(-50%, -50%);
+      }
+  }
+
+</style>
+<section class="employee-profile-main">
+  <div class="profile-container">
+    <!-- First Box -->
+    <div class="emp-box">
+      <div class="employee-profile" onclick="triggerEmployeeFileInput()">
+        <img 
+            id="employeeProfileImage"
+            src="{% if employee.profile_picture %}{{ employee.profile_picture.url }}{% else %}{% static 'assets/default-profile.avif' %}{% endif %}" 
+            alt="Employee Profile Picture"
+        />
+        <input 
+            type="file" 
+            id="employeeProfilePictureInput"
+            name="profile_picture" 
+            style="display: none;" 
+            onchange="handleEmployeeFileChange(event)">
+      </div>
+      <div class="employeeName" id="employeeName">
+        {{ employee.first_name }} {{ employee.last_name }}
+      </div>
+      <div class="employeeId" id="employeeId">
+        ID: {{ employee.employee_id }}
+      </div>
+      <div class="department" id="department">{{ employee.department }}</div>
+      <div class="employeeJobTitle" id="employeeJobTitle">
+        {{ employee.job_role }}
+      </div>
+      <div
+        class="employee-edit-btn"
+        id="edit_details"
+        onclick="employeeOpenModal()"
+      >
+        Edit Profile
+      </div>
+      <div
+        class="employee-password-btn"
+        id="edit_password"
+        onclick="employeeOpenPasswordModal()"
+      >
+        Change Password
+      </div>
+    </div>
+    <!-- Second Box -->
+    <div class="emp-box">
+      <div class="personal-data">
+        <h3>Personal Data</h3>
+
+        <div class="employee-details-card">
+          <div class="detail-item">
+              <span class="detail-label">Full Name:</span>
+              <span id="employeeName">{{ employee.first_name }} {{ employee.last_name }}</span>
+          </div>
+          
+          <div class="detail-item">
+              <span class="detail-label">Email:</span>
+              <span id="employeeEmail">{{ employee.user.email }}</span>
+          </div>
+          
+          <div class="detail-item">
+              <span class="detail-label">Date of Birth:</span>
+              <span id="employeeDob">{{ employee.date_of_birth }}</span>
+          </div>
+          
+          <div class="detail-item">
+              <span class="detail-label">Phone Number:</span>
+              <span id="employeePhone">{{ employee.phone }}</span>
+          </div>
+          
+          <div class="detail-item">
+              <span class="detail-label">Address:</span>
+              <span id="employeeAddress">{{ employee.address }}</span>
+          </div>
+        </div>
+      </div>      
+    </div>
+
+    <!-- third Box -->
+    <div class="emp-box">
+      <div class="additional-data">
+        <h3>Additional Data</h3>
+    
+        <div class="employee-additional-details">
+            <div class="detail-item">
+                <span class="detail-label">Employee ID:</span>
+                <span id="employeeId">{{ employee.employee_id }}</span>
+            </div>
+    
+            <div class="detail-item">
+                <span class="detail-label">Department:</span>
+                <span id="employeeDepartment">{{ employee.department }}</span>
+            </div>
+    
+            <div class="detail-item">
+                <span class="detail-label">Job Title:</span>
+                <span id="employeeJobTitle">{{ employee.job_role }}</span>
+            </div>
+    
+            <div class="detail-item">
+                <span class="detail-label">Skills:</span>
+                <span id="employeeSkills">{{ employee.skills }}</span>
+            </div>
+    
+            <div class="detail-item">
+                <span class="detail-label">LinkedIn:</span>
+                <a href="{{ employee.linkedin_url }}" id="employeeLinkedin" target="_blank">
+                    {{ employee.linkedin_url }}
+                </a>
+            </div> 
+        </div>
+      </div>  
+    </div>
+
+    <!-- fourth box -->
+    <div class="emp-box">
+      <div class="enquiry-box">
+        <h3>For Enquiry</h3>
+        <div class="enquiry-item">
+            <i class="fa-solid fa-globe"></i>
+            <a href="https://www.luxurycruise.com" target="_blank">www.luxurycruise.com</a>
+        </div>
+        <div class="enquiry-item">
+            <i class="fa-brands fa-facebook"></i>
+            <a href="https://facebook.com/luxurycruise" target="_blank">@luxurycruise</a>
+        </div>
+        <div class="enquiry-item">
+            <i class="fa-brands fa-twitter"></i>
+            <a href="https://twitter.com/luxurycruise" target="_blank">@luxurycruise</a>
+        </div>
+        <div class="enquiry-item">
+            <i class="fa-brands fa-instagram"></i>
+            <a href="https://instagram.com/luxurycruise" target="_blank">@luxurycruise</a>
+        </div>
+        <div class="enquiry-item">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:luxurycruise@gmail.com">luxurycruise@gmail.com</a>
+        </div>
+      </div>
+    </div>    
+  </div>
+
+  <!-- Modal for Editing Details -->
+  <div class="employee-overlay" id="employeeOverlay"></div>
+  <div class="employee-modal" id="employeeEditModal">
+    <header class="employee-modal-header-edit">
+      <h2>Edit Personal Details</h2>
+    </header>
+    <div class="employee-modal-content">
+      <form id="employeeEditForm">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="employeeEditName">Full Name</label>
+          <input
+            type="text"
+            id="employeeEditName"
+            value="{{ employee.first_name }} {{ employee.last_name }}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="employeeEditEmployeeId">Employee ID</label>
+          <input
+            type="text"
+            id="employeeEditEmployeeId"
+            value="{{ employee.employee_id }}"
+            disabled
+          />
+        </div>
+        <div class="form-group">
+          <label for="employeeEditJobTitle">Job Title</label>
+          <input
+            type="text"
+            id="employeeEditJobTitle"
+            value="{{ employee.job_role }}"
+            disabled
+          />
+        </div>
+        <div class="form-group">
+          <label for="employeeEditDepartment">Department</label>
+          <input
+            type="text"
+            id="employeeEditDepartment"
+            value="{{ employee.department }}"
+            disabled
+          />
+        </div>
+        <div class="form-group">
+          <label for="employeeEditEmail">Email Address</label>
+          <input
+            type="email"
+            id="employeeEditEmail"
+            value="{{ employee.user.email }}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="employeeEditPhone">Phone Number</label>
+          <input
+            type="text"
+            id="employeeEditPhone"
+            value="{{ employee.phone }}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="employeeEditSkills">Skills</label>
+          <input
+            type="text"
+            id="employeeEditSkills"
+            value="{{ employee.skills }}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="employeeEditAddress">Address</label>
+          <input
+            type="text"
+            id="employeeEditAddress"
+            value="{{ employee.address }}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="employeeEditDob">Date of Birth</label>
+          <input
+            type="date"
+            id="employeeEditDob"
+            value="{{ employee.date_of_birth|date:'Y-m-d' }}"
+            disabled
+          />
+        </div>
+        <div class="form-group">
+          <label for="employeeEditLinkedin">LinkedIn URL</label>
+          <input
+            type="text"
+            id="employeeEditLinkedin"
+            value="{{ employee.linkedin_url }}"
+          />
+        </div>
+      </form>
+    </div>
+
+    <footer class="employee-modal-footer">
+      <button onclick="employeeSaveChanges()" class="save-btn">
+        Save Changes
+      </button>
+      <button onclick="employeeCloseModal()" class="cancel-btn">Cancel</button>
+    </footer>
+  </div>
+
+  <!-- Modal for Changing Password -->
+  <div class="employee-overlay" id="passwordOverlay"></div>
+  <div class="employee-modal" id="passwordChangeModal">
+    <header class="employee-modal-header-password">
+      <h2>Change Password</h2>
+    </header>
+    <div class="employee-modal-content">
+      <form id="passwordChangeForm">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="currentPassword">Current Password</label>
+          <input type="password" id="currentPassword" required />
+        </div>
+        <div class="form-group">
+          <label for="newPassword">New Password</label>
+          <input type="password" id="newPassword" required />
+        </div>
+        <div class="form-group">
+          <label for="confirmNewPassword">Confirm New Password</label>
+          <input type="password" id="confirmNewPassword" required />
+        </div>
+      </form>
+    </div>
+    <footer class="employee-modal-footer">
+      <button onclick="employeeChangePassword()" class="save-btn">
+        Change Password
+      </button>
+      <button onclick="employeeClosePasswordModal()" class="cancel-btn">
+        Cancel
+      </button>
+    </footer>
+  </div>
+  <!-- Modal message -->
+  <div class="modalBoxOverlay"></div>
+  <div class="modalBox">
+    <h2 id="alertTitle"></h2>
+    <p id="alertMsg"></p>
+    <button id="modalOk">OK</button>
+  </div>
+</section>
+
+<div class="modal" id="successModal">
+  <div class="modal-header">Success!</div>
+  <div class="modal-body">Your profile has been updated successfully.</div>
+  <div class="modal-footer">
+      <button class="btn btn-success" onclick="closeModal()">OK</button>
+  </div>
+</div>
+
+{% endblock %}
